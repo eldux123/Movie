@@ -5,9 +5,38 @@
     <title>Inicio</title>
 </head>
 <body>
-<h1>Welcome to Principal Page, {{name}}</h1>
-<p>this is the principal page.</p>
+
+<h1>Welcome to Principal Page, {{ name }}</h1>
+<p>This is the principal page.</p>
 <p>Here you can find information about our project.</p>
 <p>Feel free to explore and learn more about what we do.</p>
+
+<hr>
+
+<h2>Buscar Películas</h2>
+<form method="get">
+    <input type="text" name="searchMovie" placeholder="Buscar película..." value="{{ searchTerm }}">
+    <button type="submit">Buscar</button>
+</form>
+
+<h2>Películas disponibles</h2>
+<ul>
+    {% for movie in movies %}
+        <li>
+            <strong>{{ movie.titulo }}</strong> - {{ movie.genero }} - {{ movie.fecha_lanzamiento }}<br>
+
+            {% if movie.image %}
+                <img src="{{ movie.image.url }}" alt="{{ movie.titulo }}" width="150"><br>
+            {% endif %}
+
+            {% if movie.url %}
+                <a href="{{ movie.url }}" target="_blank">Ver más</a>
+            {% endif %}
+        </li>
+    {% empty %}
+        <li>No se encontraron películas.</li>
+    {% endfor %}
+</ul>
+
 </body>
 </html>
