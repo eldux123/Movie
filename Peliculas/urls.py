@@ -13,6 +13,11 @@ urlpatterns = [
     path('', views.home, name='home'),      # Página principal
     path('about/', views.about, name='about'),  # Página "Acerca de"
     path('news/', include('news.urls')),    # App de noticias
+
+    path('signup/', views.signup, name='signup'),
+
+    path('statistics/', views.statistics, name='statistics'),
+
 ]
 
 # Servir archivos multimedia en desarrollo

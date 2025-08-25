@@ -1,38 +1,38 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<h1 class="mb-4">Bienvenido a la página principal, {{ name }}</h1>
-<p>Esta es la página principal.</p>
-<p>Aquí puedes encontrar información sobre nuestro proyecto.</p>
-<p>Siéntete libre de explorar y aprender más sobre lo que hacemos.</p>
+<h1 class="mb-4">🎬 Bienvenido a la página principal, {{ name }}</h1>
+<p>Esta es la página principal de nuestro sitio.</p>
+<p>Aquí puedes encontrar información sobre películas.</p>
+<p>Explora y aprende más sobre lo que ofrecemos.</p>
 
 <hr>
 
-<h2>Buscar Películas</h2>
+<h2>🔍 Buscar Películas</h2>
 <form method="get" class="mb-3 d-flex">
-    <label for="searchMovie" class="form-label me-2">Buscar:</label>
-    <input type="text" id="searchMovie" name="searchMovie" class="form-control me-2"
-           placeholder="Buscar película..." value="{{ searchTerm }}">
+    <input type="text" id="searchMovie" name="searchMovie"
+           class="form-control me-2" placeholder="Buscar película..."
+           value="{{ searchTerm }}">
     <button type="submit" class="btn btn-primary">Buscar</button>
 </form>
 
-<h2>Películas disponibles</h2>
+<h2>🎥 Películas disponibles</h2>
 <div class="row row-cols-1 row-cols-md-3 g-4">
     {% for movie in movies %}
         <div class="col">
-            <div class="card h-100" style="width: 18rem;">
+            <div class="card h-100">
                 {% if movie.image %}
                     <img src="{{ movie.image.url }}" class="card-img-top" alt="Imagen de {{ movie.titulo }}">
                 {% endif %}
                 <div class="card-body">
                     <h5 class="card-title">{{ movie.titulo }}</h5>
-                    <p class="card-text">{{ movie.descripcion }}</p>
+                    <p class="card-text">{{ movie.descripcion|truncatechars:150 }}</p>
                     <p><strong>Género:</strong> {{ movie.genero }}</p>
                     <p><strong>Año:</strong> {{ movie.year }}</p>
                     <p><strong>Duración:</strong> {{ movie.duracion }} min</p>
-                    <p><strong>Calificación:</strong> {{ movie.calificacion }}</p>
+                    <p><strong>Calificación:</strong> ⭐ {{ movie.calificacion }}</p>
                     {% if movie.url %}
-                        <a href="{{ movie.url }}" class="btn btn-primary" target="_blank">Ver más</a>
+                        <a href="{{ movie.url }}" class="btn btn-outline-primary btn-sm" target="_blank">Ver más</a>
                     {% endif %}
                 </div>
             </div>

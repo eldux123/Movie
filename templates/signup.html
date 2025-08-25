@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  {% if email %}
+    <h2>Added {{ email }} to mailing list</h2>
+    <!-- Enlace para volver a home -->
+    <a href="{% url 'home' %}">Home</a>
+  {% else %}
+    <h2>Join our mailing list:</h2>
+    <form method="post">
+      {% csrf_token %}
+      <label for="email">Enter your email:</label>
+      <input type="email" name="email" id="email" required>
+      <button type="submit">Sign Up</button>
+    </form>
+  {% endif %}
+{% endblock %}
